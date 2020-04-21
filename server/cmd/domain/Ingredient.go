@@ -6,6 +6,5 @@ type Ingredient struct {
 	Name     string
 	Quantity int
 	Unit     string
-	Weight   int
 	Recipe   []*Recipe `gorm:"many2many:recipe_ingredients"`
 }

@@ -18,5 +18,7 @@ func main() {
 	migrations.CreateIngredient()
 	migrations.CreateTag()
 
+	migrations.CreateDummyRecipe()
+
 	log.Fatal(http.ListenAndServe(":7000", nil))
 }
