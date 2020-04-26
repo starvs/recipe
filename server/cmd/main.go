@@ -4,7 +4,11 @@ import (
 	"log"
 	"net/http"
 
+	"./db"
+	"./handlers"
+
 	"./migrations"
+	"github.com/go-chi/chi"
 )
 
 func check(e error) {
@@ -14,11 +18,18 @@ func check(e error) {
 }
 
 func main() {
+	db.InitDB()
+
 	migrations.CreateRecipe()
 	migrations.CreateIngredient()
 	migrations.CreateTag()
 
 	migrations.CreateDummyRecipe()
 
-	log.Fatal(http.ListenAndServe(":7000", nil))
+	router := chi.NewRouter()
+	router.Route("/recipes", func(r chi.Router) {
+		r.Get("/", handlers.Recipes)
+	})
+
+	log.Fatal(http.ListenAndServe(":7000", router))
 }

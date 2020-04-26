@@ -1,70 +1,36 @@
 package migrations
 
 import (
-	"fmt"
-
+	"../db"
 	"../domain"
-	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 func CreateRecipe() {
-	db, err := gorm.Open("mysql", "root:fixins@tcp(localhost:3315)/recipe")
-
-	if err != nil {
-		fmt.Println(err.Error())
-		panic("error establishing database connection")
-
-	}
-
-	defer db.Close()
-
-	db.AutoMigrate(&domain.Recipe{})
+	db.DB.AutoMigrate(&domain.Recipe{})
 }
 
 func CreateIngredient() {
-	db, err := gorm.Open("mysql", "root:fixins@tcp(localhost:3315)/recipe")
-
-	if err != nil {
-		fmt.Println(err.Error())
-		panic("error establishing database connection")
-
-	}
-
-	defer db.Close()
-
-	db.AutoMigrate(&domain.Ingredient{})
+	db.DB.AutoMigrate(&domain.Ingredient{})
 }
 
 func CreateTag() {
-	db, err := gorm.Open("mysql", "root:fixins@tcp(localhost:3315)/recipe")
-
-	if err != nil {
-		fmt.Println(err.Error())
-		panic("error establishing database connection")
-
-	}
-
-	defer db.Close()
-
-	db.AutoMigrate(&domain.Tag{})
+	db.DB.AutoMigrate(&domain.Tag{})
 }
 
 func CreateDummyRecipe() {
-	db, err := gorm.Open("mysql", "root:fixins@tcp(localhost:3315)/recipe")
-
-	if err != nil {
-		fmt.Println(err.Error())
-		panic("error establishing database connection")
-
-	}
-
 	ingredient1 := domain.Ingredient{Name: "chicken", Quantity: 1, Unit: "lb."}
 	ingredient2 := domain.Ingredient{Name: "rice", Quantity: 8, Unit: "oz."}
+	ingredient3 := domain.Ingredient{Name: "rice", Quantity: 16, Unit: "oz."}
+	ingredient4 := domain.Ingredient{Name: "salt", Quantity: 3, Unit: "oz."}
 
-	recipe := domain.Recipe{Name: "chicken and rice", Ingredients: []*domain.Ingredient{&ingredient1, &ingredient2}, PrepTime: 8, BakeTime: 30}
+	tag1 := domain.Tag{Name: "easy"}
+	tag2 := domain.Tag{Name: "meat"}
+	tag3 := domain.Tag{Name: "salty"}
 
-	db.Create(&recipe)
-	defer db.Close()
+	recipe := domain.Recipe{Name: "chicken and rice", Ingredients: []*domain.Ingredient{&ingredient1, &ingredient2}, Tags: []*domain.Tag{&tag1, &tag2}, PrepTime: 8, BakeTime: 30}
+	recipe2 := domain.Recipe{Name: "salt chicken and much rice", Ingredients: []*domain.Ingredient{&ingredient1, &ingredient3, &ingredient4}, Tags: []*domain.Tag{&tag1, &tag2, &tag3}, PrepTime: 8, BakeTime: 30}
 
+	db.DB.Where(domain.Recipe{Name: recipe.Name}).FirstOrCreate(&recipe)
+	db.DB.Where(domain.Recipe{Name: recipe2.Name}).FirstOrCreate(&recipe2)
 }
