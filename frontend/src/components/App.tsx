@@ -1,8 +1,16 @@
 
-import * as React from "react";
+import * as React from "react"
+import Router from './Router'
+import { BrowserRouter } from 'react-router-dom'
+import Nav from './Nav'
 
-export interface IAppProps {}
+export interface AppProps {}
 
-export default function IApp(props: IAppProps) {
-  return <h1>there will eventually be recipes</h1>;
+export default function App (props: AppProps) {
+  return ( 
+    <BrowserRouter>
+        <Nav />
+        <Router />
+    </BrowserRouter>
+  )
 }
