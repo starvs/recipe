@@ -1,6 +1,6 @@
 
 import * as React from "react"
-import Router from './Router'
+import Router from './Routes'
 import { BrowserRouter } from 'react-router-dom'
 import Nav from './Nav'
 

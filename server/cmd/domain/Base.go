@@ -8,10 +8,10 @@ import (
 )
 
 type Base struct {
-	ID        string     `sql:"type:char(36);primary_key"`
-	CreatedAt time.Time  `json:"created_at"`
-	UpdatedAt time.Time  `json:"update_at"`
-	DeletedAt *time.Time `sql:"index" json:"deleted_at"`
+	ID        string     `json:"id" sql:"type:char(36);primary_key"`
+	CreatedAt time.Time  `json:"createdAt"`
+	UpdatedAt time.Time  `json:"updateAt"`
+	DeletedAt *time.Time `json:"deletedAt" sql:"index" json:"deleted_at"`
 }
 
 // BeforeCreate will set a UUID rather than numeric ID.

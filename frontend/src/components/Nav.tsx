@@ -7,10 +7,10 @@ export default function(props: NavProps) {
     return (
         <ul>
             <li>
-                <Link to="/Home">Home</Link>
+                <Link to="/home">Home</Link>
             </li>
             <li>
-                <Link to="/Recipes">Recipes</Link>
+                <Link to="/recipes">Recipes</Link>
             </li>
         </ul>
     )

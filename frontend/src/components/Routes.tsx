@@ -1,14 +1,15 @@
 import * as React from "react"
-import { Switch, Route } from 'react-router-dom'
-import Recipes from './Recipes'
+import { Switch, Route, useRouteMatch } from 'react-router-dom'
+import RecipeRoutes from './Recipes'
 import Home from './Home'
 
-export default function Router() {
+export default function Routes() {
+    const match = useRouteMatch()
+    console.log(match)
     return (
-
         <Switch>
             <Route path="/recipes">
-                <Recipes/>
+                <RecipeRoutes/>
             </Route>
             <Route path="/">
                 <Home/>
