@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Link, Switch, useRouteMatch, useParams } from 'react-router-dom'
-import { Recipe } from '../domain'
+import { Route, Link, Switch, useRouteMatch } from 'react-router-dom'
+import { Recipe as IRecipe } from '../domain'
+import Recipe from './Recipe'
 
 export interface RecipesProps {
-    recipes: Recipe[]
+    recipes: IRecipe[]
 }
 
 export const Recipes = (props: RecipesProps) => {
@@ -11,7 +12,7 @@ export const Recipes = (props: RecipesProps) => {
     if (!recipes) {
         return <h1>loading...</h1>
     }
-    const recipeList = recipes.map((recipe: Recipe) => {
+    const recipeList = recipes.map((recipe: IRecipe) => {
         return <div><Link to={`/recipes/${recipe.id}`}>{recipe.name}</Link></div>
     })
 
@@ -34,7 +35,7 @@ export const RecipeRoutes = () => {
     return (
         <Switch>
             <Route path={`${match.path}/:recipeId`}>
-                <h1>this is where a recipe will go</h1>
+                <Recipe recipes={recipes}/>
             </Route>
             <Route path={match.path}>
                 <Recipes recipes={recipes}/>
