@@ -12,6 +12,9 @@ export default function(props: NavProps) {
             <li>
                 <Link to="/recipes">Recipes</Link>
             </li>
+            <li>
+                <Link to="/list">List</Link>
+            </li>
         </ul>
     )
 }
