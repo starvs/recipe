@@ -19,8 +19,6 @@ export const ShoppingList = (props: ListProps) => {
     }, [])
     
     const addRecipeIngredients = (ingredients: Ingredient[])=> {
-        console.log('INGREDIENTS')
-        console.log(ingredients)
         const currentListItems = shoppingList.map(i => i.name)
  
         const updatedShoppingList = ingredients.reduce((shoppingList, ingredient) => {
@@ -37,13 +35,7 @@ export const ShoppingList = (props: ListProps) => {
             return shoppingList.map(item => {
                 if (item.name === ingredient.name && item.unit === ingredient.unit) {
                     const itemCopy = Object.assign({}, item)
-                    console.log('ingredient.name', ingredient.name)
-                    console.log('itemCopy.quantityBEFORE', itemCopy.quantity)
-                    console.log('ingredient.quantity', ingredient.quantity)
                     itemCopy.quantity = itemCopy.quantity + ingredient.quantity
-                    console.log('itemCopy.quantityAFTER', itemCopy.quantity)
-                    console.log('!!!!!!!')
-                    console.log(itemCopy)
                     return itemCopy
                 }
                 return item
@@ -58,10 +50,7 @@ export const ShoppingList = (props: ListProps) => {
         return <h1>loading...</h1>
     }
 
-
     const recipeList = recipes.map((recipe: Recipe) => {
-        console.log('RECIPE LIST RENDERING#####')
-        console.log(recipe)
         return <div key={recipe.id} onClick={() => addRecipeIngredients(recipe.ingredients)}>{recipe.name}</div>
     })
 

@@ -10,7 +10,7 @@ interface IngredientProps {
 }
 
 export const Ingredients = ({ ingredients }: IngredientsProps) => {
-    return <>{ingredients.map(ingredient => <Ingredient ingredient={ingredient}/>)}</>
+    return <>{ingredients.map((ingredient: any) => <Ingredient ingredient={ingredient}/>)}</>
 }
 
 export const Ingredient = ({ingredient}: IngredientProps): JSX.Element => {
