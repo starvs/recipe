@@ -10,7 +10,7 @@ export const AddIngredient = ({handleSubmit}: AddIngredientProps) => {
     const [unit, setUnit] = useState('')
 
     return (
-    <form onSubmit={(e) => handleSubmit(e, name, quantity, unit)}>
+    <form>
         <input
             type="text"
             name="name"
@@ -31,7 +31,7 @@ export const AddIngredient = ({handleSubmit}: AddIngredientProps) => {
             value={unit}
             onChange={(e) => setUnit(e.target.value)}
         />
-        <input type="submit" value="Submit" />
+        <input type="button" value="Submit Ingredient" onClick={(e) => handleSubmit(e, name, quantity, unit)}/>
     </form>
     )
 }

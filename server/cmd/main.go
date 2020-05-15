@@ -41,7 +41,8 @@ func main() {
 	}))
 
 	router.Route("/recipes", func(r chi.Router) {
-		r.Get("/", handlers.Recipes)
+		r.Get("/", handlers.GetRecipes)
+		r.Post("/add", handlers.AddRecipe)
 	})
 
 	log.Fatal(http.ListenAndServe(":7000", router))

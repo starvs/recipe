@@ -32,19 +32,18 @@ export const AddRecipe = (props: AddRecipeProps) => {
             ingredients
         }
 
-        fetch("http://localhost:7000/addrecipe", {method: 'POST', body: JSON.stringify(newRecipe)})
+        fetch("http://localhost:7000/recipes/add", {method: 'POST', body: JSON.stringify(newRecipe)})
         e.preventDefault()
     }
 
      return (<>
         <h1>Add a recipe</h1>
-
-        <form onSubmit={(e) => handleSubmitRecipe(e)}>
+        <form>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} /> 
             <AddIngredient handleSubmit={handleIngredientSubmit}/>
 
             {newRecipe}
-            <input type="submit" value="Submit" />
+            <input type="button" value="Submit Recipe" onClick={(e) => handleSubmitRecipe(e)}/>
         </form>
      </>)
 }
