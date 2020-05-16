@@ -23,6 +23,7 @@ func main() {
 
 	migrations.CreateRecipe()
 	migrations.CreateIngredient()
+	migrations.CreateRecipeIngredient()
 	migrations.CreateTag()
 
 	migrations.CreateDummyRecipe()
