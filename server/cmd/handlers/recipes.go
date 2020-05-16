@@ -13,11 +13,11 @@ import (
 func GetRecipes(w http.ResponseWriter, r *http.Request) {
 	var recipes []domain.Recipe
 
-	db.DB.Set("gorm:auto_preload", true).Find(&recipes)
+	db.DB.Debug().Preload("RecipeIngredients.Ingredient").Find(&recipes)
 
 	json, _ := json.Marshal(recipes)
-	w.Write(json)
 
+	w.Write(json)
 }
 
 func AddRecipe(w http.ResponseWriter, r *http.Request) {
