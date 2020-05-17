@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Recipe as Recipe, Ingredient } from '../domain'
+import { Recipe as Recipe, RecipeIngredient } from '../domain'
 import Ingredients from './Ingredients'
 
 export interface ListProps {
@@ -7,7 +7,7 @@ export interface ListProps {
 
 export const ShoppingList = (props: ListProps) => {
     const [recipes, setRecipes] = useState<Recipe[]>([])
-    const [shoppingList, setShoppingList] = useState<Ingredient[]>([])
+    const [shoppingList, setShoppingList] = useState<RecipeIngredient[]>([])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -18,24 +18,24 @@ export const ShoppingList = (props: ListProps) => {
         fetchData()
     }, [])
     
-    const addRecipeIngredients = (ingredients: Ingredient[])=> {
-        const currentListItems = shoppingList.map(i => i.name)
+    const addRecipeIngredients = (ingredients: RecipeIngredient[])=> {
+        const currentListItems = shoppingList.map(i => i.ingredient.name)
  
-        const updatedShoppingList = ingredients.reduce((shoppingList, ingredient) => {
-            if (!currentListItems.includes(ingredient.name)) {
-                return shoppingList.concat(ingredient)
+        const updatedShoppingList = ingredients.reduce((shoppingList, recipeIngredient) => {
+            if (!currentListItems.includes(recipeIngredient.ingredient.name)) {
+                return shoppingList.concat(recipeIngredient)
             }
 
-            const exisitingItem = shoppingList.find(listItem => listItem.name === ingredient.name && listItem.unit === ingredient.unit)
+            const exisitingItem = shoppingList.find(listItem => listItem.ingredient.name === recipeIngredient.ingredient.name && listItem.unit === recipeIngredient.unit)
 
             if (!exisitingItem) {
-                return shoppingList.concat(ingredient)
+                return shoppingList.concat(recipeIngredient)
             }
 
             return shoppingList.map(item => {
-                if (item.name === ingredient.name && item.unit === ingredient.unit) {
+                if (item.ingredient.name === recipeIngredient.ingredient.name && item.unit === recipeIngredient.unit) {
                     const itemCopy = Object.assign({}, item)
-                    itemCopy.quantity = itemCopy.quantity + ingredient.quantity
+                    itemCopy.quantity = itemCopy.quantity + recipeIngredient.quantity
                     return itemCopy
                 }
                 return item
@@ -51,7 +51,7 @@ export const ShoppingList = (props: ListProps) => {
     }
 
     const recipeList = recipes.map((recipe: Recipe) => {
-        return <div key={recipe.id} onClick={() => addRecipeIngredients(recipe.ingredients)}>{recipe.name}</div>
+        return <div key={recipe.id} onClick={() => addRecipeIngredients(recipe.recipeIngredients)}>{recipe.name}</div>
     })
 
     return (<>
@@ -61,7 +61,7 @@ export const ShoppingList = (props: ListProps) => {
         <div/>
         <div/>
         <div/>
-        <Ingredients ingredients={shoppingList}/>
+        <Ingredients recipeIngredients={shoppingList}/>
     </>)
 
 

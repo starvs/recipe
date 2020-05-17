@@ -19,7 +19,7 @@ export default (props: RecipeProps) => {
     
     return (<>
         <div>Name: {recipe.name}</div>
-        <Ingredients ingredients={recipe.ingredients}/>
+        <Ingredients recipeIngredients={recipe.recipeIngredients}/>
     </>)
 }
 

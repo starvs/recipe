@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import AddIngredient from './AddIngredient'
 import { Ingredient } from './Ingredients'
-import { Ingredient as IIingredient } from '../domain'
+import { RecipeIngredient as IIingredient } from '../domain'
 
 export interface AddRecipeProps {}
 
@@ -12,13 +12,15 @@ export const AddRecipe = (props: AddRecipeProps) => {
      const newRecipe = (<>
         <div>THINGS WILL GO HERE</div>
         <div>Name: {name}</div>
-        {ingredients.map(i => <Ingredient ingredient={i} />)}
+        {ingredients.map(i => <Ingredient recipeIngredient={i} />)}
     </>)
 
     const handleIngredientSubmit = (e: any, name: string, quantity: string, unit: string) => {
         const newIngredient = {
             id: null as any,
-            name,
+            ingredient: {
+                name
+            },
             quantity: parseInt(quantity),
             unit
         }
@@ -29,7 +31,7 @@ export const AddRecipe = (props: AddRecipeProps) => {
     const handleSubmitRecipe = (e: any) => {
         const newRecipe = {
             name,
-            ingredients
+            recipeIngredients: ingredients
         }
 
         fetch("http://localhost:7000/recipes/add", {method: 'POST', body: JSON.stringify(newRecipe)})

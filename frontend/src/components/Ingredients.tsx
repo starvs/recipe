@@ -1,22 +1,22 @@
 import React from 'react'
-import { Ingredient as IIngredient } from '../domain'
+import { RecipeIngredient as IIngredient } from '../domain'
 
 interface IngredientsProps {
-    ingredients: IIngredient[]
+    recipeIngredients: IIngredient[]
 }
 
 interface IngredientProps {
-    ingredient: IIngredient
+    recipeIngredient: IIngredient
 }
 
-export const Ingredients = ({ ingredients }: IngredientsProps) => {
-    return <>{ingredients.map((ingredient: any) => <Ingredient ingredient={ingredient}/>)}</>
+export const Ingredients = ({ recipeIngredients }: IngredientsProps) => {
+    return <>{recipeIngredients.map((recipeIngredient: IIngredient) => <Ingredient recipeIngredient={recipeIngredient}/>)}</>
 }
 
-export const Ingredient = ({ingredient}: IngredientProps): JSX.Element => {
+export const Ingredient = ({ recipeIngredient }: IngredientProps): JSX.Element => {
     return (
         <>
-            <div>{ingredient.name} -- {ingredient.quantity} {ingredient.unit}</div>
+            <div>{recipeIngredient.ingredient.name} -- {recipeIngredient.quantity} {recipeIngredient.unit}</div>
         </>
     )
 }
