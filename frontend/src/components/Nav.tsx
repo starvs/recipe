@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 export interface NavProps {}
 
-export default function(props: NavProps) {
+export const Nav = (props: NavProps) => {
     return (
         <ul>
             <li>
@@ -20,3 +21,15 @@ export default function(props: NavProps) {
         </ul>
     )
 }
+
+
+
+
+
+const StyledNav = styled(Nav)`
+    li {
+        margin: 1em 0
+    }
+`
+
+
