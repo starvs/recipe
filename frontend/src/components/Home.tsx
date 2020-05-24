@@ -3,5 +3,10 @@ import * as React from 'react'
 export interface HomeProps {}
 
 export default function Home (props: HomeProps) {
-    return <h1>there will eventually be recipes</h1>
+    return (
+        <div>
+            This is the contente you came to see. It is very exciting and innovative. Please take
+            a moment to catch your breath.
+        </div>
+    )
 }

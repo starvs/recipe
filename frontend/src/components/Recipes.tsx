@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Route, Link, Switch, useRouteMatch } from 'react-router-dom'
 import { Recipe as IRecipe } from '../domain'
 import Recipe from './Recipe'
+import styled from 'styled-components'
 
 export interface RecipesProps {
     recipes: IRecipe[]
@@ -13,7 +14,7 @@ export const Recipes = (props: RecipesProps) => {
         return <h1>loading...</h1>
     }
     const recipeList = recipes.map((recipe: IRecipe) => {
-        return <div><Link to={`/recipes/${recipe.id}`}>{recipe.name}</Link></div>
+        return <div><StyledLink to={`/recipes/${recipe.id}`}>{recipe.name}</StyledLink></div>
     })
 
     return (<>{recipeList}</>)
@@ -45,3 +46,14 @@ export const RecipeRoutes = () => {
 }
 
 export default RecipeRoutes
+
+const StyledLink = styled(Link)`
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-family: Verdana;
+    font-size: 1 em;
+    &:hover {
+        text-shadow:  2px 2px pink;
+    }
+`
