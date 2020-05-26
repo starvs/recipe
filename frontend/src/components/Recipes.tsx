@@ -49,8 +49,8 @@ export default RecipeRoutes
 
 const StyledLink = styled(Link)`
     display: block;
+    color: white;
     text-decoration: none;
-    color: black;
     font-family: Verdana;
     font-size: 1 em;
     &:hover {
