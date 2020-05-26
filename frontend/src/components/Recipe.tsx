@@ -7,6 +7,7 @@ import { pink } from '../constants/colors'
 
 export interface RecipeProps {
     recipes: IRecipe[]
+    recipeId?: string
 }
 
 interface RecipeParam {
@@ -15,9 +16,15 @@ interface RecipeParam {
 
 export default (props: RecipeProps) => {
     const { recipes } = props
-    const recipeId = (useParams() as RecipeParam).recipeId
-    const recipe = recipes.filter(r => r.id == recipeId)[0]
+    const recipeId = props.recipeId ? props.recipeId  : (useParams() as RecipeParam).recipeId
     
+    if (!recipeId) {
+        return null
+    }
+    
+    const recipe = recipes.filter(r => r.id == recipeId)[0]
+    console.log(recipeId)
+    console.log(recipe)
     return (<div>
         <Name>{recipe.name}</Name>
         <Ingredients recipeIngredients={recipe.recipeIngredients}/>

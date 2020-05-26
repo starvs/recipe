@@ -22,7 +22,7 @@ export default function App (props: AppProps) {
 }
 
 const StyledMain = styled.div`
-    padding: 2em 0 0 2em;
+    padding: 3% 40% 0 5%;
     font-size: 2em;
     font-family: Arial;
     color: white;

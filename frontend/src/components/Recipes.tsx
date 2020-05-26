@@ -6,18 +6,29 @@ import styled from 'styled-components'
 
 export interface RecipesProps {
     recipes: IRecipe[]
+    className?: string
 }
 
 export const Recipes = (props: RecipesProps) => {
-    const { recipes } = props
+    const { recipes, className } = props
+    const [recipeId, setRecipeId] = useState<string>(null)
+    
     if (!recipes) {
         return <h1>loading...</h1>
     }
+    console.log(recipes)
     const recipeList = recipes.map((recipe: IRecipe) => {
-        return <div><StyledLink to={`/recipes/${recipe.id}`}>{recipe.name}</StyledLink></div>
+        console.log(recipe.name)
+        return <div onClick={() => setRecipeId(recipe.id)}>{recipe.name}</div>
     })
 
-    return (<>{recipeList}</>)
+    return (
+        <div className={className}>
+            <LeftColumn>{recipeList}</LeftColumn>
+            <RightColumn><Recipe recipes={recipes} recipeId={recipeId}/></RightColumn>
+        </div>
+        
+    )
 }
 
 export const RecipeRoutes = () => {
@@ -39,13 +50,29 @@ export const RecipeRoutes = () => {
                 <Recipe recipes={recipes}/>
             </Route>
             <Route path={match.path}>
-                <Recipes recipes={recipes}/>
+                <StyledRecipes recipes={recipes}/>
             </Route>
         </Switch>
     )
 }
 
 export default RecipeRoutes
+
+const LeftColumn = styled.span`
+    grid-column-start: 1;
+    grid-column-end: 2;
+`
+
+const RightColumn = styled.span`
+    grid-column-start: 2;
+    grid-column-end: 3;
+    justify-self: end;
+`
+
+const StyledRecipes = styled(Recipes)`
+    display: grid; 
+    grid-template-columns: 50% 50%;
+`
 
 const StyledLink = styled(Link)`
     display: block;
