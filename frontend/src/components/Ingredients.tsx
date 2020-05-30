@@ -37,7 +37,7 @@ const IngredientQuantity = styled.span`
 
 const StyledIngredient = styled(Ingredient)`
     display: grid; 
-    grid-template-columns: 300px 100px;
+    grid-template-columns: 300px 200px;
 `
 
 export default Ingredients
