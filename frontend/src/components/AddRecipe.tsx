@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import AddIngredient from './AddIngredient'
 import { Ingredient } from './Ingredients'
 import { RecipeIngredient as IIingredient } from '../domain'
+import styled from 'styled-components'
 
 export interface AddRecipeProps {}
 
@@ -10,8 +11,7 @@ export const AddRecipe = (props: AddRecipeProps) => {
      const [ingredients, setIngredients] = useState<IIingredient[]>([])
      
      const newRecipe = (<>
-        <div>THINGS WILL GO HERE</div>
-        <div>Name: {name}</div>
+        <StyledInput type="text" placeholder={"name"} value={name} onChange={(e) => setName(e.target.value)}/>
         {ingredients.map(i => <Ingredient recipeIngredient={i} />)}
     </>)
 
@@ -39,15 +39,27 @@ export const AddRecipe = (props: AddRecipeProps) => {
     }
 
      return (<>
-        <h1>Add a recipe</h1>
-        <form>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} /> 
-            <AddIngredient handleSubmit={handleIngredientSubmit}/>
+        <Header>Add a recipe</Header>
+        {newRecipe}
+        <AddIngredient handleSubmit={handleIngredientSubmit}/>
 
-            {newRecipe}
-            <input type="button" value="Submit Recipe" onClick={(e) => handleSubmitRecipe(e)}/>
-        </form>
+        <StyledInput type="button" value="Submit Recipe" onClick={(e) => handleSubmitRecipe(e)}/>
+
      </>)
 }
+
+const Header = styled.div`
+    padding: 0 0 20px 0;
+`
+
+const StyledInput = styled.input`
+    padding:10px;
+    border:0;
+    border-radius:10px;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    &:focus {
+        outline:none !important
+    };
+`
 
 export default AddRecipe
