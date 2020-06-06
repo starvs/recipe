@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"./db"
 	"./handlers"
@@ -44,6 +46,19 @@ func main() {
 	router.Route("/recipes", func(r chi.Router) {
 		r.Get("/", handlers.GetRecipes)
 		r.Post("/add", handlers.AddRecipe)
+	})
+
+	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("we DOING THINGS")
+		dir, _ := os.Getwd()
+		fmt.Println(dir)
+		http.ServeFile(w, r, "./index.html")
+	})
+	router.Get("/bundle", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("we DOING THINGS JSJSJS")
+		dir, _ := os.Getwd()
+		fmt.Println(dir)
+		http.ServeFile(w, r, "./bundle.js")
 	})
 
 	log.Fatal(http.ListenAndServe(":7000", router))

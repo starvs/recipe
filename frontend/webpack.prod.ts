@@ -9,6 +9,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 
 const config: webpack.Configuration = {
   mode: "production",
+  devtool: "eval",
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
