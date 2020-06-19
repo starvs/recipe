@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"os"
 
-	"./db"
-	"./handlers"
+	"github.com/starvs/recipe/server/cmd/db"
+	"github.com/starvs/recipe/server/cmd/handlers"
 
-	"./migrations"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/cors"
+	"github.com/starvs/recipe/server/cmd/migrations"
 )
 
 func check(e error) {

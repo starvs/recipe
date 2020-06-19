@@ -1,9 +1,9 @@
 package migrations
 
 import (
-	"../db"
-	"../domain"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"github.com/starvs/recipe/server/cmd/db"
+	"github.com/starvs/recipe/server/cmd/domain"
 )
 
 func CreateRecipe() {

@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"../db"
+	"github.com/starvs/recipe/server/cmd/db"
 
-	"../domain"
+	"github.com/starvs/recipe/server/cmd/domain"
 )
 
 func GetRecipes(w http.ResponseWriter, r *http.Request) {
