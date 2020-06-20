@@ -1,4 +1,4 @@
-module github.com/starvs/recipe
+module github.com/starvs/recipe/server
 
 go 1.13
 
