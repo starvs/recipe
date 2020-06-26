@@ -5,6 +5,10 @@ WORKDIR /root/recipe
 COPY . .
 
 RUN go mod download
-RUN go build -o . cmd/main.go
 
-CMD ["./main"]
+WORKDIR /root/recipe/cmd
+RUN go build main.go
+
+WORKDIR /root/recipe
+
+CMD ["/root/recipe/cmd/main"]
