@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/starvs/recipe/server/cmd/db"
 	"github.com/starvs/recipe/server/cmd/handlers"
@@ -46,7 +48,18 @@ func main() {
 		r.Post("/add", handlers.AddRecipe)
 	})
 
-	router.Handle("/", http.FileServer(http.Dir("./static/")))
+	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("we DOING THINGS")
+		dir, _ := os.Getwd()
+		fmt.Println(dir)
+		http.ServeFile(w, r, "./index.html")
+	})
+	router.Get("/bundle", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("we DOING THINGS JSJSJS")
+		dir, _ := os.Getwd()
+		fmt.Println(dir)
+		http.ServeFile(w, r, "./bundle.js")
+	})
 
 	log.Fatal(http.ListenAndServe(":7000", router))
 }

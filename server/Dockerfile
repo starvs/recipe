@@ -9,4 +9,6 @@ RUN go mod download
 WORKDIR /root/recipe/cmd
 RUN go build main.go
 
+WORKDIR /root/recipe
+
 CMD ["/root/recipe/cmd/main"]
