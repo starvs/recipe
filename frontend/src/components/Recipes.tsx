@@ -36,7 +36,7 @@ export const RecipeRoutes = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await fetch("http://206.189.233.64/recipes")
+            const result = await fetch("http://jamiemakesandbakes.com//recipes")
             setRecipes(await result.json())
         }
 
