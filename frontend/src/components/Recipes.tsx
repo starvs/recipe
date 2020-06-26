@@ -12,7 +12,7 @@ export interface RecipesProps {
 export const Recipes = (props: RecipesProps) => {
     const { recipes, className } = props
     const [recipeId, setRecipeId] = useState<string>(null)
-    
+
     if (!recipes) {
         return <h1>loading...</h1>
     }
@@ -25,9 +25,9 @@ export const Recipes = (props: RecipesProps) => {
     return (
         <div className={className}>
             <LeftColumn>{recipeList}</LeftColumn>
-            <RightColumn><Recipe recipes={recipes} recipeId={recipeId}/></RightColumn>
+            <RightColumn><Recipe recipes={recipes} recipeId={recipeId} /></RightColumn>
         </div>
-        
+
     )
 }
 
@@ -36,21 +36,21 @@ export const RecipeRoutes = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await fetch("http://localhost:7000/recipes")
+            const result = await fetch("http://206.189.233.64/recipes")
             setRecipes(await result.json())
         }
 
         fetchData()
     }, [])
-    
+
     const match = useRouteMatch()
     return (
         <Switch>
             <Route path={`${match.path}/:recipeId`}>
-                <Recipe recipes={recipes}/>
+                <Recipe recipes={recipes} />
             </Route>
             <Route path={match.path}>
-                <StyledRecipes recipes={recipes}/>
+                <StyledRecipes recipes={recipes} />
             </Route>
         </Switch>
     )
