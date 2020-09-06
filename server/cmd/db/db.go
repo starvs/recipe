@@ -11,7 +11,7 @@ var DB *gorm.DB
 
 func InitDB() {
 	var err error
-	fmt.Println("dasfdsa!!!!")
+	fmt.Println("WE DOING DIGITAL OCEAN THINGS")
 	DB, err = gorm.Open("mysql", "root:fixins@tcp(recipe_mysql:3306)/recipe?parseTime=true")
 
 	if err != nil {

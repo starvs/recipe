@@ -13,16 +13,16 @@ export const ShoppingList = ({ className }: ListProps) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const result = await fetch("http://localhost:7000/recipes")
+            const result = await fetch("http://jamiemakesandbakes.com/recipes")
             setRecipes(await result.json())
         }
 
         fetchData()
     }, [])
-    
-    const addRecipeIngredients = (ingredients: RecipeIngredient[])=> {
+
+    const addRecipeIngredients = (ingredients: RecipeIngredient[]) => {
         const currentListItems = shoppingList.map(i => i.ingredient.name)
- 
+
         const updatedShoppingList = ingredients.reduce((shoppingList, recipeIngredient) => {
             if (!currentListItems.includes(recipeIngredient.ingredient.name)) {
                 return shoppingList.concat(recipeIngredient)
@@ -62,8 +62,8 @@ export const ShoppingList = ({ className }: ListProps) => {
             {recipeList}
         </RecipeList>
         <ListItems>
-           <SectionHeader>My Shopping List</SectionHeader>
-           <Ingredients recipeIngredients={shoppingList} />
+            <SectionHeader>My Shopping List</SectionHeader>
+            <Ingredients recipeIngredients={shoppingList} />
         </ListItems>
     </div>)
 }
